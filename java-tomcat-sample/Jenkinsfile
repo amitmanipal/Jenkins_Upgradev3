@@ -23,6 +23,9 @@ pipeline {
         }
          stage('Deploy in Production Environment'){
             steps{
+                  timeout(time:5, unit:'DAYS'){
+                    input message: 'APPROVE Production Deployment ?'
+                 }
                 build job: 'Deploy_Application_Production_Environment'
             }
         }
